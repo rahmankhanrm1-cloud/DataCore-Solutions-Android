@@ -27,7 +27,7 @@ jobs:
 
       - name: Extract Android project
         run: |
-          mkdir extracted
+          mkdir -p extracted
           unzip -o "DataCore-Solutions-Android.zip" -d extracted
 
       - name: Find and build Android project
@@ -44,9 +44,22 @@ jobs:
           PROJECT_DIR=$(dirname "$APP_DIR")
 
           echo "Android project found at: $PROJECT_DIR"
+
+          cat > "$GITHUB_WORKSPACE/kotlin-fix.gradle" <<'EOF'
+          allprojects {
+              configurations.all {
+                  resolutionStrategy {
+                      force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
+                      force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+                      force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+                  }
+              }
+          }
+          EOF
+
           cd "$PROJECT_DIR"
 
-          gradle assembleDebug --stacktrace
+          gradle -I "$GITHUB_WORKSPACE/kotlin-fix.gradle" assembleDebug --stacktrace
 
           mkdir -p "$GITHUB_WORKSPACE/apk-output"
           find . -type f -name "*.apk" -exec cp {} "$GITHUB_WORKSPACE/apk-output/" \;

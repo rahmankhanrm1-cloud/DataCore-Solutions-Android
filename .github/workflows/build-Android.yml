@@ -1,0 +1,55 @@
+name: Build DataCore Android
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Extract Android project
+        run: |
+          mkdir extracted
+          unzip -o "DataCore-Solutions-Android.zip" -d extracted
+
+      - name: Find and build Android project
+        run: |
+          APP_GRADLE=$(find extracted -type f \( -name "build.gradle" -o -name "build.gradle.kts" \) -path "*/app/*" | head -n 1)
+
+          if [ -z "$APP_GRADLE" ]; then
+            echo "ERROR: Android app build.gradle was not found."
+            find extracted -maxdepth 6 -type f | sort
+            exit 1
+          fi
+
+          APP_DIR=$(dirname "$APP_GRADLE")
+          PROJECT_DIR=$(dirname "$APP_DIR")
+
+          echo "Android project found at: $PROJECT_DIR"
+          cd "$PROJECT_DIR"
+
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace
+
+          mkdir -p "$GITHUB_WORKSPACE/apk-output"
+          find . -type f -name "*.apk" -exec cp {} "$GITHUB_WORKSPACE/apk-output/" \;
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: DataCore-Solutions-APK
+          path: apk-output/*.apk
+          if-no-files-found: error

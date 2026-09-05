@@ -20,6 +20,11 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+
       - name: Extract Android project
         run: |
           mkdir extracted
@@ -27,7 +32,7 @@ jobs:
 
       - name: Find and build Android project
         run: |
-          APP_GRADLE=$(find extracted -type f \( -name "build.gradle" -o -name "build.gradle.kts" \) -path "*/app/*" | head -n 1)
+          APP_GRADLE=$(find extracted -type f \( -name "build.gradle" -o -name "build.gradle.kts" \) -path "*/app/*" | head -1)
 
           if [ -z "$APP_GRADLE" ]; then
             echo "ERROR: Android app build.gradle was not found."
@@ -41,8 +46,7 @@ jobs:
           echo "Android project found at: $PROJECT_DIR"
           cd "$PROJECT_DIR"
 
-          chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace
+          gradle assembleDebug --stacktrace
 
           mkdir -p "$GITHUB_WORKSPACE/apk-output"
           find . -type f -name "*.apk" -exec cp {} "$GITHUB_WORKSPACE/apk-output/" \;

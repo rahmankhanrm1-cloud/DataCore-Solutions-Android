@@ -28,7 +28,7 @@ jobs:
       - name: Extract Android project
         run: |
           mkdir -p extracted
-          unzip -o "DataCore-Solutions-Android.zip" -d extracted
+          unzip -o "DataCore-Solutions-Android-with-Logo.zip" -d extracted
 
       - name: Find and build Android project
         run: |

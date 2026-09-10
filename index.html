@@ -1,323 +1,771 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DataCore Solutions</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #050505;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, #005eff55, transparent 70%);
-      top: -150px;
-      right: -150px;
-      z-index: -1;
-      animation: glow 5s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { transform: scale(1); opacity: .5; }
-      to { transform: scale(1.4); opacity: 1; }
-    }
-
-    nav {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      padding: 20px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(15px);
-      z-index: 100;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    .logo span {
-      color: #5fa8ff;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 20px 60px;
-      background:
-        linear-gradient(rgba(0,0,0,.4), #050505),
-        radial-gradient(circle at center, #092b55, #050505 65%);
-    }
-
-    .hero h1 {
-      font-size: clamp(45px, 9vw, 100px);
-      letter-spacing: 4px;
-      background: linear-gradient(90deg, white, #5fa8ff, white);
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: fade 1.8s ease;
-    }
-
-    .hero p {
-      margin: 22px auto;
-      max-width: 700px;
-      font-size: 18px;
-      color: #bbbbbb;
-      line-height: 1.7;
-    }
-
-    .hero button {
-      margin-top: 15px;
-      padding: 15px 35px;
-      border: 1px solid #5fa8ff;
-      border-radius: 50px;
-      background: transparent;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 0 25px #006eff55;
-      transition: .3s;
-    }
-
-    .hero button:hover {
-      background: #147cff;
-      transform: translateY(-3px);
-    }
-
-    @keyframes fade {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    section {
-      padding: 100px 8%;
-    }
-
-    .title {
-      text-align: center;
-      font-size: 38px;
-      margin-bottom: 50px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-    }
-
-    .card {
-      padding: 35px 25px;
-      border-radius: 20px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.1);
-      backdrop-filter: blur(15px);
-      transition: .35s;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: #5fa8ff;
-      box-shadow: 0 15px 50px #006eff22;
-    }
-
-    .card h3 {
-      margin-bottom: 15px;
-      color: #74b4ff;
-    }
-
-    .card p {
-      color: #aaa;
-      line-height: 1.7;
-    }
-
-    .about {
-      text-align: center;
-      max-width: 900px;
-      margin: auto;
-      color: #bbb;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    .contact {
-      text-align: center;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #777;
-      border-top: 1px solid #151515;
-    }
-
-    @media(max-width: 700px) {
-      nav .links {
-        display: none;
-      }
-
-      section {
-        padding: 75px 6%;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#03060d">
+<meta name="description" content="DataCore Solutions — AI, automation, web development and Android experiences. Engineering the future with intelligence.">
+<title>DataCore Solutions | Engineering the Future</title>
+<style>
+:root{color-scheme:dark;--bg:#03060d;--text:#edf4ff;--muted:#9aacc4;--blue:#6fbaff;--cyan:#8eeaff;--line:rgba(145,191,255,.18);--panel:rgba(12,23,41,.7);--radius:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:110px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.65;overflow-x:clip}button,input,textarea{font:inherit}button,a,input,textarea{-webkit-tap-highlight-color:transparent}button,a{touch-action:manipulation}button{cursor:pointer}a{color:inherit;text-decoration:none}button{color:inherit}button:disabled{cursor:default}::selection{background:#215b8d;color:white}:focus-visible{outline:2px solid var(--cyan);outline-offset:5px}h1,h2,h3,p{margin:0}h2,h3{line-height:1.15;font-weight:500;letter-spacing:-.035em}h2{font-size:clamp(2rem,4.5vw,3.8rem)}h3{font-size:1.65rem}p{color:var(--muted)}[hidden]{display:none!important}.wrap{width:min(1180px,calc(100% - 48px));margin-inline:auto}.eyebrow{font:500 .75rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}.accent{color:var(--blue)}.skip{position:fixed;top:12px;left:12px;z-index:100;background:#fff;color:#000;padding:12px;transform:translateY(-180%)}.skip:focus{transform:none}.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.symbols{position:absolute;width:0;height:0;overflow:hidden}
+#stars{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:.6}.ambient{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 50% 12%,#0a1e39 0,transparent 52%),var(--bg)}.progress{height:2px;position:fixed;top:0;left:0;right:0;background:linear-gradient(90deg,#357cff,#a6f2ff);transform:scaleX(0);transform-origin:left;z-index:60}
+.header{position:fixed;inset:0 0 auto;z-index:40;border-bottom:1px solid var(--line);background:rgba(3,6,13,.84);backdrop-filter:blur(16px)}.header-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;font-size:1rem;font-weight:600;white-space:nowrap}.brand-mark{width:34px;height:38px;display:grid;place-items:center;color:var(--cyan);border:1px solid #6196c3;border-radius:9px 2px 9px 2px;font:600 22px/1 ui-monospace,monospace;box-shadow:inset 0 0 18px #2878bf26}.brand small{display:block;color:var(--muted);font-size:.65rem;line-height:1.2;letter-spacing:.28em;text-transform:uppercase}.nav{display:flex;gap:22px;align-items:center}.nav a{font-size:.875rem;color:var(--muted);position:relative;padding:12px 0;transition:color .2s}.nav a:hover,.nav a[aria-current]{color:white}.nav a::after{content:"";position:absolute;bottom:4px;left:0;right:0;height:1px;background:var(--blue);transform:scaleX(0);transition:transform .25s}.nav a:hover::after,.nav a[aria-current]::after{transform:scaleX(1)}.menu-toggle{display:none;border:1px solid var(--line);background:#101c2d;border-radius:10px;min-width:46px;min-height:46px;align-items:center;justify-content:center}
+.hero{min-height:860px;min-height:100svh;position:relative;display:grid;align-items:center;padding:160px 0 110px;isolation:isolate;overflow:hidden}.hero-scene{position:absolute;inset:0;z-index:-1;pointer-events:none;transform:translate3d(0,var(--parallax,0px),0)}.halo{position:absolute;width:min(1080px,140vw);height:480px;left:50%;top:45%;transform:translate(-50%,-50%) rotate(-16deg);border:1px solid #78c9ff63;border-radius:50%;box-shadow:0 0 25px #397dcb28,inset 0 0 30px #528adb1a}.halo::before,.halo::after{content:"";position:absolute;border-radius:50%;inset:26px -25px;border:1px solid #6cacff20}.halo::after{inset:-60px 75px;border-color:#6cacff12}.beam{position:absolute;top:12%;left:15%;width:70%;height:75%;background:linear-gradient(115deg,transparent 28%,#368af014 45%,#99d9ff22 49%,transparent 61%);filter:blur(24px);animation:beam-drift 16s ease-in-out infinite alternate}.beam.second{transform:rotate(150deg);opacity:.35;animation-delay:-8s}.horizon{position:absolute;bottom:16%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#6396db60,transparent);box-shadow:0 0 55px 14px #1871da17}.hero-content{text-align:center}.hero .eyebrow{margin-bottom:30px}.hero-title{font-size:clamp(3.4rem,14vw,11rem);font-weight:600;line-height:1.08;letter-spacing:.075em;margin-right:-.075em;color:#e8f4ff;text-shadow:0 0 70px #428cff40;animation:title-reveal 1.8s cubic-bezier(.16,1,.3,1) both}.hero-title span{background:linear-gradient(180deg,#fff 15%,#d1e5ff 48%,#6688b6 100%);background-clip:text;-webkit-background-clip:text;color:transparent}.hero h2{font-size:clamp(1.55rem,3.1vw,2.8rem);font-weight:400;letter-spacing:-.025em;margin-top:28px;animation:rise 1s .35s both}.hero-subtitle{margin:18px auto 32px;font-size:clamp(.875rem,1.8vw,1rem);letter-spacing:.08em;animation:rise 1s .5s both}.button{min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:16px;padding:13px 23px;border-radius:9px;border:1px solid #92c9ff80;background:linear-gradient(135deg,#a0dfff,#6bafff);color:#031326;font-weight:600;font-size:.875rem;box-shadow:0 0 32px #3389ed24;transition:transform .25s,box-shadow .25s,border-color .25s}.button:hover{transform:translateY(-3px);box-shadow:0 0 35px #5aaaff55}.button.ghost{background:#10233e5c;border-color:var(--line);color:var(--text);box-shadow:none}.hero .button{animation:rise 1s .65s both}.hero-foot{position:absolute;bottom:30px;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:20px;font:400 .75rem/1.6 ui-monospace,monospace;letter-spacing:.09em;color:#8a9cb6}.scroll-cue{display:flex;align-items:center;gap:12px}.scroll-cue::before{content:"";width:1px;height:34px;background:linear-gradient(var(--blue),transparent)}.hero-foot>a{padding:10px}.coordinates{color:#a1b8d2}.ticker{position:relative;padding:23px 0;border-block:1px solid var(--line);background:#07101cab}.ticker-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:#b6c6d9;font:400 .75rem/1.6 ui-monospace,monospace;letter-spacing:.14em}.ticker b{color:var(--blue);font-weight:400;margin-right:10px}
+.section{padding-block:110px;position:relative;scroll-margin-top:12px}.section-heading{display:flex;justify-content:space-between;gap:32px;align-items:end;margin-bottom:45px}.section-heading .eyebrow{margin-bottom:14px}.section-heading>p{max-width:330px}.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}.about-grid h2{margin:18px 0 24px}.about-grid p+p{margin-top:18px}.principles{display:grid;gap:0;border-top:1px solid var(--line)}.principle{display:grid;grid-template-columns:42px 1fr;gap:20px;padding:26px 0;border-bottom:1px solid var(--line)}.principle>span{font:400 .875rem/1.6 ui-monospace,monospace;color:var(--blue)}.principle h3{font-size:1.2rem;margin-bottom:8px}.principle p{font-size:.9375rem}.services{background:linear-gradient(180deg,transparent,#0611208a,transparent)}.service-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.service-card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(135deg,#11223b8c,#070e19bf);padding:34px;transition:border-color .3s,transform .3s,box-shadow .3s;scroll-margin-top:110px}.service-card::before{content:"";position:absolute;inset:0;background:radial-gradient(350px circle at var(--mx,50%) var(--my,0%),#488fd41a,transparent 70%);pointer-events:none}.service-card:hover,.service-card:focus-within{border-color:#72baff70;box-shadow:0 10px 45px #0005,0 0 24px #337cbe12}.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}.service-icon{display:grid;place-items:center;width:52px;height:52px;border:1px solid #649bd444;background:#152c493d;border-radius:13px;color:var(--cyan)}.service-icon .icon{width:27px;height:27px}.card-number{font:400 .75rem ui-monospace,monospace;letter-spacing:.15em;color:#7d94b0}.service-card h3{margin-bottom:16px}.service-card p{max-width:440px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}.tags span{border:1px solid var(--line);border-radius:5px;padding:4px 9px;font:400 .75rem/1.7 ui-monospace,monospace;color:#a8bed7}.service-card details{position:relative;border-top:1px solid var(--line);margin-top:26px;padding-top:15px}.service-card summary{cursor:pointer;padding:6px 0;color:#c6e4ff;font-size:.875rem;min-height:40px}.service-card details p{font-size:.9375rem;padding-top:12px}.projects-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.project{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#08111dcc}.project-visual{height:195px;position:relative;overflow:hidden;display:grid;place-items:center;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at center,#14467970,transparent 70%),#06101e}.project-visual::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#5685bd14 1px,transparent 1px),linear-gradient(90deg,#5685bd14 1px,transparent 1px);background-size:26px 26px;mask-image:radial-gradient(ellipse,black,transparent 80%)}.project-visual .icon{width:65px;height:65px;color:#a8dfff;filter:drop-shadow(0 0 16px #478de0);transition:transform .4s}.project:hover .project-visual .icon{transform:scale(1.12)}.project-label{position:absolute;bottom:15px;left:20px;font:400 .75rem ui-monospace,monospace;letter-spacing:.12em;color:#afc1d7}.project-body{padding:26px}.project-body h3{font-size:1.35rem;margin-bottom:12px}.project-body p{font-size:.9375rem}.project-body a{display:inline-flex;align-items:center;gap:12px;color:var(--blue);font-size:.875rem;margin-top:20px;min-height:44px}.contact-panel{padding:clamp(25px,5vw,65px);border:1px solid #78b9ff42;border-radius:26px;background:radial-gradient(ellipse at 0 0,#14518d40,transparent 70%),#08111dc9;display:grid;grid-template-columns:1fr 1fr;gap:60px}.contact-panel h2{margin:18px 0 22px}.contact-panel p{max-width:420px}.brief{display:flex;flex-direction:column;gap:12px}.brief label{font-size:.875rem;color:#c5d8ef}.brief textarea{width:100%;resize:vertical;min-height:135px;max-height:350px;background:#030a14;border:1px solid #739dcb50;color:var(--text);border-radius:10px;padding:15px}.brief .button{align-self:start}.brief-note,.brief-status{font-size:.875rem}.brief-status{color:var(--cyan);min-height:24px}.footer{border-top:1px solid var(--line);padding:32px 0 110px}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:25px}.footer p,.footer a{font-size:.875rem}.footer a:hover{color:var(--cyan)}
+.assistant-toggle{position:fixed;right:max(22px,env(safe-area-inset-right));bottom:max(22px,env(safe-area-inset-bottom));z-index:55;display:flex;align-items:center;gap:11px;border:1px solid #92cdff8c;border-radius:40px;min-height:58px;padding:14px 20px;background:linear-gradient(135deg,#173961,#09172c);box-shadow:0 0 35px #3d88d330,0 10px 25px #0007;font-size:.875rem}.assistant-toggle .icon{color:var(--cyan)}.assistant-toggle:hover{border-color:var(--cyan)}.assistant-panel{position:fixed;right:22px;bottom:96px;width:min(370px,calc(100vw - 32px));max-height:calc(100dvh - 125px);overflow:auto;z-index:55;background:#081321f5;border:1px solid #72baff61;border-radius:20px;box-shadow:0 20px 80px #000b;backdrop-filter:blur(18px);padding:22px}.assistant-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:15px}.assistant-head h2{font-size:1.2rem}.assistant-head p{font-size:.75rem;margin-top:4px}.close{border:1px solid var(--line);border-radius:8px;background:transparent;min-width:44px;min-height:44px;font-size:1.5rem}.assistant-answer{border:1px solid var(--line);border-radius:12px;background:#11243b75;padding:16px;font-size:.9375rem;color:#cad8e9}.assistant-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.assistant-options button{background:#10213a;border:1px solid var(--line);border-radius:8px;padding:10px;color:#c6ddf6;font-size:.875rem;min-height:44px}.assistant-options button:hover{border-color:var(--blue)}.assistant-link{display:inline-flex;align-items:center;gap:10px;color:var(--blue);padding:12px 0 0;font-size:.875rem;min-height:44px}.motion-toggle{position:fixed;bottom:28px;left:22px;z-index:35;border:1px solid var(--line);background:#081321e8;border-radius:30px;min-height:44px;padding:8px 14px;font-size:.75rem;color:#b7cae2}.reveal{opacity:1;transform:none}.motion-on .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}.motion-on .reveal.visible{opacity:1;transform:none}.motion-off *,.motion-off *::before,.motion-off *::after{animation:none!important;transition:none!important}.motion-off .reveal{opacity:1;transform:none}.motion-off .hero-scene{transform:none}html:has(.motion-off){scroll-behavior:auto}body.page-hidden .beam{animation-play-state:paused}
+@keyframes title-reveal{from{opacity:0;transform:translateY(25px) scale(1.04);filter:blur(12px);clip-path:inset(0 50%)}to{opacity:1;transform:none;filter:blur(0);clip-path:inset(0)}}@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@keyframes beam-drift{from{translate:-5% -3%;rotate:-8deg;opacity:.45}to{translate:6% 5%;rotate:8deg;opacity:.85}}
+@media(hover:hover) and (pointer:fine){.service-card:hover{transform:translateY(-5px)}}
+@media(min-width:1600px){.hero{min-height:900px}}
+@media(max-width:1100px){.menu-toggle{display:flex}.nav{display:none;position:absolute;top:82px;left:0;right:0;background:#060d19fa;border-bottom:1px solid var(--line);padding:18px 24px;grid-template-columns:1fr 1fr;gap:5px 25px;max-height:calc(100dvh - 100px);overflow:auto}.nav.open{display:grid}.nav a{padding:12px}.about-grid{gap:40px}.contact-panel{gap:35px}}
+@media(max-width:700px){.wrap{width:calc(100% - 36px)}.header-inner{min-height:72px}.nav{top:72px}.hero{min-height:760px;min-height:100svh;padding:140px 0 120px}.hero .eyebrow{font-size:.65rem;letter-spacing:.15em;margin-bottom:35px}.hero-title{font-size:clamp(2.75rem,12.8vw,5.6rem);letter-spacing:.035em;margin-right:-.035em}.hero h2{max-width:350px;margin:28px auto 0;line-height:1.35}.hero-subtitle{max-width:280px;line-height:1.9}.halo{height:300px;width:145vw;top:40%}.beam{filter:blur(15px)}.hero-foot{bottom:22px;font-size:.65rem}.coordinates{display:none}.ticker-inner{display:grid;grid-template-columns:1fr 1fr;font-size:.65rem;gap:14px}.section{padding-block:72px}.section-heading{display:block;margin-bottom:30px}.section-heading>p{margin-top:20px}.about-grid,.contact-panel{grid-template-columns:1fr}.about-grid{gap:34px}.service-grid,.projects-grid{grid-template-columns:1fr}.service-card{padding:26px}.card-top{margin-bottom:25px}.project-visual{height:175px}.contact-panel{padding:26px}.footer-inner{align-items:start;flex-direction:column;gap:15px}.assistant-toggle{right:16px;bottom:max(16px,env(safe-area-inset-bottom));min-height:54px;padding:13px 16px}.assistant-panel{right:16px;bottom:85px}.motion-toggle{left:16px;bottom:21px;font-size:.7rem}.assistant-panel,.header{backdrop-filter:blur(10px)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.motion-on .reveal{opacity:1;transform:none}.hero-scene{transform:none!important}}
+</style>
 </head>
-
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<nav>
-  <div class="logo">DataCore <span>Solutions</span></div>
+<svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+<symbol id="i-arrow" viewBox="0 0 24 24">
+<path d="M5 12h14m-6-6 6 6-6 6"/>
+</symbol>
+<symbol id="i-ai" viewBox="0 0 24 24">
+<rect x="6" y="6" width="12" height="12" rx="3"/>
+<path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/>
+<path d="m9 12 2 2 4-4"/>
+</symbol>
+<symbol id="i-auto" viewBox="0 0 24 24">
+<path d="m13 2-9 12h7l-1 8 10-12h-8z"/>
+</symbol>
+<symbol id="i-web" viewBox="0 0 24 24">
+<rect x="2" y="3" width="20" height="18" rx="3"/>
+<path d="M2 8h20m-14 4-3 3 3 3m8-6 3 3-3 3m-3-7-2 8"/>
+</symbol>
+<symbol id="i-phone" viewBox="0 0 24 24">
+<rect x="6" y="2" width="12" height="20" rx="3"/>
+<path d="M10 5h4m-3 14h2"/>
+</symbol>
+<symbol id="i-menu" viewBox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16"/>
+</symbol>
+<symbol id="i-spark" viewBox="0 0 24 24">
+<path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5z"/>
+</symbol>
+</defs>
+</svg>
 
-  <div class="links">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
+<div class="ambient" aria-hidden="true"></div>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="header">
+<div class="wrap header-inner">
+<a class="brand" href="#home" aria-label="DataCore Solutions home">
+<span class="brand-mark" aria-hidden="true">D</span>
+<span>DataCore<small>Solutions</small></span>
+</a>
+
+<button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="navigation" aria-expanded="false">
+<svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+</button>
+
+<nav class="nav" id="navigation" aria-label="Main navigation">
+<a href="#home" aria-current="location">Home</a>
+<a href="#about">About</a>
+<a href="#ai">AI Solutions</a>
+<a href="#automation">Automation</a>
+<a href="#web">Web</a>
+<a href="#android">Android</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
 </nav>
+</div>
+</header>
 
-<section class="hero" id="home">
-  <div>
-    <h1>DATACORE</h1>
+<main id="main">
+<section class="hero" id="home" aria-labelledby="hero-title">
+<div class="hero-scene" aria-hidden="true">
+<div class="beam"></div>
+<div class="beam second"></div>
+<div class="halo"></div>
+<div class="horizon"></div>
+</div>
 
-    <p>
-      Engineering the Future with Intelligence.
-      AI • Technology • Automation • Digital Solutions
-    </p>
+<div class="wrap hero-content">
+<p class="eyebrow">Intelligence meets possibility</p>
+<h1 class="hero-title" id="hero-title"><span>DATACORE</span></h1>
+<h2>Engineering the Future with Intelligence</h2>
+<p class="hero-subtitle">AI • Technology • Automation • Digital Solutions</p>
+<a class="button" href="#about">
+Explore the Future
+<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+</a>
+</div>
 
-    <button onclick="location.href='#services'">
-      Explore the Future
-    </button>
-  </div>
+<div class="wrap hero-foot">
+<span class="coordinates">VISION / ENGINEER / EVOLVE</span>
+<a class="scroll-cue" href="#about">SCROLL TO EXPLORE</a>
+<span>BUILT FOR WHAT’S NEXT</span>
+</div>
 </section>
 
-<section id="about">
-  <h2 class="title">About DataCore</h2>
+<div class="ticker" aria-hidden="true">
+<div class="wrap ticker-inner">
+<span><b>01 /</b> ARTIFICIAL INTELLIGENCE</span>
+<span><b>02 /</b> SMART AUTOMATION</span>
+<span><b>03 /</b> WEB EXPERIENCES</span>
+<span><b>04 /</b> ANDROID DEVELOPMENT</span>
+</div>
+</div>
 
-  <div class="about">
-    DataCore Solutions creates intelligent digital experiences,
-    automation systems and modern AI-powered technology designed
-    for the next generation.
-  </div>
+<section class="section wrap" id="about" aria-labelledby="about-title">
+<div class="about-grid">
+<div class="reveal">
+<p class="eyebrow">01 — About DataCore</p>
+<h2 id="about-title">Big ideas.<br><span class="accent">Intelligent execution.</span></h2>
+<p>Technology should turn complexity into clarity. DataCore Solutions brings AI, automation and digital development together to build experiences that move ideas forward.</p>
+<p>From the first concept to the final interaction, our focus is simple: purposeful design, thoughtful engineering and technology people can actually use.</p>
+</div>
+
+<div class="principles reveal">
+<div class="principle">
+<span>01</span>
+<div>
+<h3>Intelligence with purpose</h3>
+<p>Connect the right technology to the problem that matters.</p>
+</div>
+</div>
+<div class="principle">
+<span>02</span>
+<div>
+<h3>Designed around people</h3>
+<p>Make every interface clear, intuitive and easy to navigate.</p>
+</div>
+</div>
+<div class="principle">
+<span>03</span>
+<div>
+<h3>Engineered to evolve</h3>
+<p>Build a practical foundation for the next stage of your idea.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 
-<section id="services">
-  <h2 class="title">Our Services</h2>
+<section class="section services" id="solutions" aria-labelledby="solutions-title">
+<div class="wrap">
+<div class="section-heading reveal">
+<div>
+<p class="eyebrow">02 — Our capabilities</p>
+<h2 id="solutions-title">The tools to build<br><span class="accent">what comes next.</span></h2>
+</div>
+<p>Four connected disciplines. One ambition: bring your digital vision to life.</p>
+</div>
 
-  <div class="cards">
-
-    <div class="card">
-      <h3>AI Solutions</h3>
-      <p>
-        Intelligent AI-powered systems for modern businesses and applications.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Automation</h3>
-      <p>
-        Automate repetitive workflows and improve productivity.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Web Development</h3>
-      <p>
-        Cinematic, modern and mobile-responsive websites.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>App Development</h3>
-      <p>
-        Powerful Android and digital applications with modern user experiences.
-      </p>
-    </div>
-
-  </div>
+<div class="service-grid">
+<section class="service-card reveal" id="ai" aria-labelledby="ai-title">
+<div class="card-top">
+<span class="service-icon">
+<svg class="icon" aria-hidden="true"><use href="#i-ai"/></svg>
+</span>
+<span class="card-number">INTELLIGENCE / 01</span>
+</div>
+<h3 id="ai-title">AI Solutions</h3>
+<p>Make knowledge easier to access and information easier to act on with intelligent digital tools.</p>
+<div class="tags">
+<span>AI assistants</span>
+<span>Knowledge tools</span>
+<span>Data insights</span>
+</div>
+<details>
+<summary>Explore the possibilities</summary>
+<p>Search internal knowledge, organize documents or guide customers through common questions. Start with a focused use case and keep people in control of important decisions.</p>
+</details>
 </section>
 
-<section id="projects">
-  <h2 class="title">Our Projects</h2>
-
-  <div class="cards">
-
-    <div class="card">
-      <h3>DataCore AI</h3>
-      <p>AI-powered digital assistant platform.</p>
-    </div>
-
-    <div class="card">
-      <h3>DataCore Android</h3>
-      <p>Smart Android technology and automation platform.</p>
-    </div>
-
-  </div>
+<section class="service-card reveal" id="automation" aria-labelledby="automation-title">
+<div class="card-top">
+<span class="service-icon">
+<svg class="icon" aria-hidden="true"><use href="#i-auto"/></svg>
+</span>
+<span class="card-number">EFFICIENCY / 02</span>
+</div>
+<h3 id="automation-title">Automation</h3>
+<p>Turn repetitive processes into connected workflows that give your team more room to focus.</p>
+<div class="tags">
+<span>Workflow design</span>
+<span>Integrations</span>
+<span>Reporting</span>
+</div>
+<details>
+<summary>Explore the possibilities</summary>
+<p>Connect everyday tools, streamline document handling and simplify recurring reports. Clear approval steps and useful status updates keep workflows understandable.</p>
+</details>
 </section>
 
-<section id="contact" class="contact">
-  <h2 class="title">Build the Future</h2>
-
-  <p style="color:#aaa; margin-bottom:30px;">
-    Have an idea? DataCore Solutions can turn it into reality.
-  </p>
-
-  <button onclick="alert('Contact DataCore Solutions')"
-    style="
-      padding:15px 35px;
-      border:none;
-      border-radius:50px;
-      background:white;
-      font-size:16px;
-      cursor:pointer;
-    ">
-    Contact Us
-  </button>
+<section class="service-card reveal" id="web" aria-labelledby="web-title">
+<div class="card-top">
+<span class="service-icon">
+<svg class="icon" aria-hidden="true"><use href="#i-web"/></svg>
+</span>
+<span class="card-number">EXPERIENCE / 03</span>
+</div>
+<h3 id="web-title">Web Development</h3>
+<p>Distinctive websites and useful web applications, designed to feel effortless on every screen.</p>
+<div class="tags">
+<span>Responsive websites</span>
+<span>Web apps</span>
+<span>UI / UX</span>
+</div>
+<details>
+<summary>Explore the possibilities</summary>
+<p>Create a brand website, a project portal or a focused business tool. Responsive layouts, accessible controls and performance-conscious design shape the experience from the start.</p>
+</details>
 </section>
 
-<footer>
-  © 2026 DataCore Solutions • Powered by Intelligence
+<section class="service-card reveal" id="android" aria-labelledby="android-title">
+<div class="card-top">
+<span class="service-icon">
+<svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+</span>
+<span class="card-number">MOBILITY / 04</span>
+</div>
+<h3 id="android-title">Android App Development</h3>
+<p>Put practical digital experiences in people’s hands with applications designed for life on the move.</p>
+<div class="tags">
+<span>Android apps</span>
+<span>Mobile interfaces</span>
+<span>Connected tools</span>
+</div>
+<details>
+<summary>Explore the possibilities</summary>
+<p>Shape a mobile companion, a field-work tool or a customer-facing application. Prioritize clear navigation, comfortable touch targets and a focused set of useful features.</p>
+</details>
+</section>
+</div>
+</div>
+</section>
+
+<section class="section wrap" id="projects" aria-labelledby="projects-title">
+<div class="section-heading reveal">
+<div>
+<p class="eyebrow">03 — Project directions</p>
+<h2 id="projects-title">Ideas in <span class="accent">focus.</span></h2>
+</div>
+<p>Concept showcases illustrating what we can create. These are not published client projects.</p>
+</div>
+
+<div class="projects-grid">
+<article class="project reveal">
+<div class="project-visual" aria-hidden="true">
+<svg class="icon"><use href="#i-ai"/></svg>
+<span class="project-label">CONCEPT / INTELLIGENCE</span>
+</div>
+<div class="project-body">
+<h3>Knowledge Core</h3>
+<p>A concept for finding answers across documents through one focused knowledge interface.</p>
+<a href="#ai">
+Explore AI Solutions
+<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+</a>
+</div>
+</article>
+
+<article class="project reveal">
+<div class="project-visual" aria-hidden="true">
+<svg class="icon"><use href="#i-auto"/></svg>
+<span class="project-label">CONCEPT / AUTOMATION</span>
+</div>
+<div class="project-body">
+<h3>Flow Command</h3>
+<p>A concept for bringing repetitive tasks, approvals and workflow visibility into one place.</p>
+<a href="#automation">
+Explore Automation
+<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+</a>
+</div>
+</article>
+
+<article class="project reveal">
+<div class="project-visual" aria-hidden="true">
+<svg class="icon"><use href="#i-phone"/></svg>
+<span class="project-label">CONCEPT / MOBILE</span>
+</div>
+<div class="project-body">
+<h3>DataCore Mobile</h3>
+<p>A concept for accessing essential project information through a streamlined Android experience.</p>
+<a href="#android">
+Explore Android
+<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+</a>
+</div>
+</article>
+</div>
+</section>
+
+<section class="section wrap" id="contact" aria-labelledby="contact-title">
+<div class="contact-panel reveal">
+<div>
+<p class="eyebrow">04 — Contact</p>
+<h2 id="contact-title">Your next chapter.<br><span class="accent">Let’s build it.</span></h2>
+<p>Start with the problem you want to solve. Prepare a short project brief to share with the DataCore team through your preferred contact channel.</p>
+</div>
+<div class="brief">
+<label for="project-brief">What would you like to create?</label>
+<textarea id="project-brief" maxlength="3000" placeholder="Describe your idea, who it is for, and what it should do."></textarea>
+<button class="button" id="copy-brief" type="button">
+Copy project brief
+<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+</button>
+<p class="brief-note">Your text stays in this page. This button copies your brief; it does not send a message.</p>
+<p class="brief-status" id="brief-status" role="status"></p>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<div class="wrap footer-inner">
+<a class="brand" href="#home">
+<span class="brand-mark" aria-hidden="true">D</span>
+<span>DataCore<small>Solutions</small></span>
+</a>
+<p>© <span id="year">2026</span> DataCore Solutions.</p>
+<a href="#home">Back to the beginning ↑</a>
+</div>
 </footer>
 
+<button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" hidden>Pause effects</button>
+
+<button class="assistant-toggle" id="assistant-toggle" type="button" aria-controls="assistant-panel" aria-expanded="false" hidden>
+<svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>
+<span>AI Assistant</span>
+</button>
+
+<section class="assistant-panel" id="assistant-panel" role="dialog" aria-labelledby="assistant-title" hidden>
+<div class="assistant-head">
+<div>
+<h2 id="assistant-title">DataCore Assistant</h2>
+<p>Offline demo · Guided answers</p>
+</div>
+<button class="close" id="assistant-close" type="button" aria-label="Close assistant">×</button>
+</div>
+
+<p class="assistant-answer" id="assistant-answer" aria-live="polite">Welcome to DataCore. Choose a topic to explore our services. This demo uses prepared answers, without a live AI connection.</p>
+
+<div class="assistant-options">
+<button type="button" data-topic="ai">AI Solutions</button>
+<button type="button" data-topic="automation">Automation</button>
+<button type="button" data-topic="web">Web Development</button>
+<button type="button" data-topic="android">Android Apps</button>
+<button type="button" data-topic="contact">Start a project</button>
+<button type="button" data-topic="about">About DataCore</button>
+</div>
+
+<a class="assistant-link" id="assistant-link" href="#solutions">
+Explore our capabilities
+<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+</a>
+</section>
+
+<noscript>
+<style>
+.menu-toggle{display:none}
+@media(max-width:1100px){
+.header{position:relative}
+.nav{display:grid;position:static;grid-template-columns:repeat(2,1fr)}
+.header-inner{flex-wrap:wrap;padding-block:16px}
+.hero{padding-top:70px}
+}
+</style>
+</noscript>
+
+<script>
+(() => {
+  'use strict';
+
+  const $ = (selector) => document.querySelector(selector);
+  const body = document.body;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  let paused = false;
+  let moving = !reduced.matches;
+
+  const motionButton = $('#motion-toggle');
+  const nav = $('#navigation');
+  const menuButton = $('.menu-toggle');
+  const progress = $('.progress');
+  const scene = $('.hero-scene');
+  const hero = $('#home');
+
+  $('#year').textContent = new Date().getFullYear();
+
+  function closeMenu(returnFocus = false) {
+    nav.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'Open navigation');
+
+    if (returnFocus) menuButton.focus();
+  }
+
+  menuButton.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute(
+      'aria-label',
+      open ? 'Close navigation' : 'Open navigation'
+    );
+  });
+
+  nav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) closeMenu();
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.header')) closeMenu();
+  });
+
+  const revealItems = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    const reveals = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    revealItems.forEach((item) => reveals.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add('visible'));
+  }
+
+  const sectionLinks = [...nav.querySelectorAll('a')];
+  const trackedSections = sectionLinks.map(
+    (link) => $(link.getAttribute('href'))
+  );
+
+  let scrollQueued = false;
+
+  function updateScroll() {
+    scrollQueued = false;
+
+    const y = window.scrollY;
+    const extent =
+      document.documentElement.scrollHeight - window.innerHeight;
+
+    progress.style.transform =
+      `scaleX(${extent > 0 ? Math.min(1, Math.max(0, y / extent)) : 0})`;
+
+    scene.style.setProperty(
+      '--parallax',
+      moving && finePointer.matches
+        ? `${Math.min(y, hero.offsetHeight) * 0.16}px`
+        : '0px'
+    );
+
+    let active = trackedSections[0];
+
+    trackedSections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= 180) {
+        active = section;
+      }
+    });
+
+    sectionLinks.forEach((link) => {
+      if (link.hash === '#' + active.id) {
+        link.setAttribute('aria-current', 'location');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!scrollQueued) {
+      scrollQueued = true;
+      requestAnimationFrame(updateScroll);
+    }
+  }, { passive: true });
+
+  document.querySelectorAll('details').forEach((item) => {
+    item.addEventListener('toggle', updateScroll);
+  });
+
+  document.querySelectorAll('.service-card').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      if (!moving || !finePointer.matches) return;
+
+      const bounds = card.getBoundingClientRect();
+
+      card.style.setProperty(
+        '--mx',
+        `${event.clientX - bounds.left}px`
+      );
+
+      card.style.setProperty(
+        '--my',
+        `${event.clientY - bounds.top}px`
+      );
+    }, { passive: true });
+  });
+
+  const canvas = $('#stars');
+  const context = canvas.getContext('2d');
+
+  let stars = [];
+  let width = 0;
+  let height = 0;
+  let frame = 0;
+  let last = 0;
+
+  function resizeStars() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+
+    if (!context) return;
+
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    const count = width < 700 ? 32 : 72;
+
+    stars = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 1.2 + 0.35,
+      speed: Math.random() * 4 + 2,
+      opacity: Math.random() * 0.5 + 0.15
+    }));
+
+    drawStars(0);
+  }
+
+  function drawStars(delta) {
+    if (!context) return;
+
+    context.clearRect(0, 0, width, height);
+    context.fillStyle = '#b7dbff';
+
+    stars.forEach((star) => {
+      star.y -= star.speed * delta;
+
+      if (star.y < -2) star.y = height + 2;
+
+      context.globalAlpha = star.opacity;
+      context.beginPath();
+      context.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      context.fill();
+    });
+
+    context.globalAlpha = 1;
+  }
+
+  function animate(time) {
+    frame = 0;
+
+    if (!moving || document.hidden || !context) return;
+    if (!last) last = time;
+
+    const elapsed = time - last;
+
+    if (elapsed >= 33) {
+      drawStars(Math.min(elapsed / 1000, 0.05));
+      last = time;
+    }
+
+    frame = requestAnimationFrame(animate);
+  }
+
+  function syncMotion() {
+    moving = !paused && !reduced.matches;
+
+    body.classList.toggle('motion-on', moving);
+    body.classList.toggle('motion-off', !moving);
+
+    motionButton.textContent = reduced.matches
+      ? 'Reduced motion'
+      : paused
+        ? 'Resume effects'
+        : 'Pause effects';
+
+    motionButton.setAttribute('aria-pressed', String(!moving));
+    motionButton.disabled = reduced.matches;
+
+    cancelAnimationFrame(frame);
+
+    frame = 0;
+    last = 0;
+
+    if (moving && !document.hidden && context) {
+      frame = requestAnimationFrame(animate);
+    } else {
+      drawStars(0);
+    }
+
+    updateScroll();
+  }
+
+  motionButton.hidden = false;
+
+  motionButton.addEventListener('click', () => {
+    paused = !paused;
+    syncMotion();
+  });
+
+  if (reduced.addEventListener) {
+    reduced.addEventListener('change', syncMotion);
+  } else {
+    reduced.addListener(syncMotion);
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    body.classList.toggle('page-hidden', document.hidden);
+    syncMotion();
+  });
+
+  let resizeTimer;
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+
+    resizeTimer = setTimeout(() => {
+      resizeStars();
+      updateScroll();
+
+      if (window.innerWidth > 1100) closeMenu();
+    }, 160);
+  }, { passive: true });
+
+  const assistantToggle = $('#assistant-toggle');
+  const assistantPanel = $('#assistant-panel');
+  const assistantClose = $('#assistant-close');
+  const answer = $('#assistant-answer');
+  const assistantLink = $('#assistant-link');
+
+  const answers = {
+    ai: [
+      'AI solutions can help people find information, understand documents and navigate common questions. Start with one clear use case.',
+      'Explore AI Solutions'
+    ],
+    automation: [
+      'Automation connects repetitive tasks into clear workflows, from document handling to recurring reports and approval steps.',
+      'Explore Automation'
+    ],
+    web: [
+      'DataCore focuses on responsive websites and web applications with clear interfaces and practical functionality across mobile and desktop.',
+      'Explore Web Development'
+    ],
+    android: [
+      'Android development turns a focused idea into a mobile experience, with comfortable touch controls and straightforward navigation.',
+      'Explore Android Development'
+    ],
+    contact: [
+      'Describe your idea in the project brief section, then copy it to share through your preferred contact channel. This demo cannot send messages or provide a quotation.',
+      'Prepare a project brief'
+    ],
+    about: [
+      'DataCore Solutions brings AI, automation, web development and Android experiences together, with a focus on useful technology and thoughtful design.',
+      'About DataCore'
+    ]
+  };
+
+  function setAssistant(open, restoreFocus = true) {
+    assistantPanel.hidden = !open;
+    assistantToggle.setAttribute('aria-expanded', String(open));
+
+    if (open) {
+      assistantClose.focus();
+    } else if (restoreFocus) {
+      assistantToggle.focus();
+    }
+  }
+
+  assistantToggle.hidden = false;
+
+  assistantToggle.addEventListener('click', () => {
+    setAssistant(assistantPanel.hidden);
+  });
+
+  assistantClose.addEventListener('click', () => {
+    setAssistant(false);
+  });
+
+  document.querySelectorAll('[data-topic]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const topic = button.dataset.topic;
+
+      answer.textContent = answers[topic][0];
+      assistantLink.textContent = answers[topic][1] + ' →';
+      assistantLink.href = '#' + topic;
+    });
+  });
+
+  assistantLink.addEventListener('click', () => {
+    const target = $(assistantLink.hash);
+
+    setAssistant(false, false);
+
+    if (target) {
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+
+    if (!assistantPanel.hidden) {
+      setAssistant(false);
+    } else if (nav.classList.contains('open')) {
+      closeMenu(true);
+    }
+  });
+
+  $('#copy-brief').addEventListener('click', async () => {
+    const input = $('#project-brief');
+    const status = $('#brief-status');
+    const text = input.value.trim();
+
+    if (!text) {
+      status.textContent = 'Write a little about your idea first.';
+      input.focus();
+      return;
+    }
+
+    try {
+      if (!navigator.clipboard || !window.isSecureContext) {
+        throw new Error('Clipboard unavailable');
+      }
+
+      await navigator.clipboard.writeText(
+        'DataCore Solutions — Project inquiry\n\n' + text
+      );
+
+      status.textContent =
+        'Brief copied. Paste it into your preferred messaging or email app.';
+    } catch {
+      input.focus();
+      input.select();
+      input.setSelectionRange(0, input.value.length);
+
+      status.textContent =
+        'Your brief is selected. Use your device’s Copy option to copy it.';
+    }
+  });
+
+  resizeStars();
+  syncMotion();
+})();
+</script>
 </body>
 </html>
